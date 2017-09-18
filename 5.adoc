@@ -1,0 +1,51 @@
+== 第三周第五天
+
+  rvm use 2.4.0@cucumber 进入cucumber的环境
+
+=== 第一个程序
+  Feature: Making Cheese
+    As a cheese maker
+    I want to make cheese
+    So I can share my cheesiness
+
+    Scenario: Using the cheese machine
+        Given I have no cheese
+        When I press the make cheese Button
+        Then I should have 1 piece of cheese
+
+
+        Given /^I have no cheese$/ do
+          pending # express the regexp above with the code you wish...
+        end
+
+        When /^I press the make cheese button$/ do
+          pending # express the regexp above with the code you wish...
+        end
+
+        Then /^I should have (\d+) piece of cheese$/ do |arg1|
+          pending # express the regexp above with the code you wish...
+        end
+
+
+=== 第二个程序
+        Feature: Baidu search
+
+        Scenario: search for keyword
+             Given I am on baidu home page
+             When I search for 'chinese'
+             Then I should be able to view the search result 'chinese'
+
+
+             Given /^I am on baidu home page$/ do
+               @browser = Watir::Browser.new :chrome
+               @browser.goto("www.baidu.com")
+             end
+
+             When /^I search for '([^"]*)'$/ do | search_text |
+               @browser.text_field(id:"kw").set(search_text)
+               @browser.button(id:"su").click
+             end
+
+             Then /^I should be able to view the search result of '([^"]*)'$/ do | result_text |
+               @browser.text.should include(result_text)
+             end
