@@ -1,0 +1,45 @@
+== 第四周第二天
+
+- Feature: 登录
+  In order to use the system
+  as a user
+  I want to login
+
+Scenario: Signing in with correct credentials
+  Given visit "登录页面"
+  When input username "root"
+  And input password "123456"
+  And I click "login" button
+  Then I should see "root"
+
+
+Scenario: User tries to sign in with incorrest password
+  Given visit "登录页面"
+  When input username "zxcv"
+  And input password "654123"
+  And I click "login" button
+  Then I should see "Invalid username or password"
+
+
+
+
+-   Given /^visit "登录页面"/ do
+    # @browser = Watir::Browser.new :chrome
+    @browser.goto("http://192.168.13.55:8088")
+  end
+
+  When /^input username "([^\"]*)"$/ do |username|
+    @browser.text_field(id: "login_username").set(username)
+  end
+
+  When /^input password "([^\"]*)"$/ do |password|
+    @browser.text_field(id: "login_password").set(password)
+  end
+
+  When /^I click "login" button$/ do
+    @browser.link(id: "login").click
+  end
+
+  Then /^I should see "([^\"]*)"$/ do |expected|
+    @browser.text.should include expected
+  end
