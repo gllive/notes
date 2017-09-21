@@ -18,7 +18,7 @@ Scenario: User tries to sign in with incorrest password
   When input username "zxcv"
   And input password "654123"
   And I click "login" button
-  Then I should see "Invalid username or password"
+  Then I should "Invalid username or password"
 
 
 
@@ -41,5 +41,13 @@ Scenario: User tries to sign in with incorrest password
   end
 
   Then /^I should see "([^\"]*)"$/ do |expected|
+    @browser.text.should include expected
+  end
+
+  Then /^I should div$/ do
+    @browser.div(:class => "w2ui-centered").click
+  end
+
+  And /^I can see "([^\"]*)"$/ do |expected|
     @browser.text.should include expected
   end
