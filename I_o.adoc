@@ -1,0 +1,43 @@
+== 基本输入和输出
+
+=== 输入
+  - 控制台输入通过gets方式获取，即通过STDIN.gets获取输入字符串。gets会以字串传回使用者的输入，取得的字串会包括换行字元。如果需要取出换行字元，则可以使用gets.chomp。获取到的内容都是字符串，如果需要，可以通过to_i，to_f转换成整型和浮点型处理
+
+      例如: print "Input your name: "
+             name = gets
+            puts "Hello, #{name}!"
+
+  - 文件输入 : 文件读取可以通过file.read方式(用"r"模式来打开文件以从中读取数据.还可以用"w"模式来表示写文件. "r+"表示的是读写)
+
+           例如： print "File name: "
+                      name = gets.chomp
+                      file = open(name, "r") # "r"表示档案供读取使用
+                      while line = file.gets
+                      print line
+                    end
+                    file.close
+   - 命令行参数输入
+
+          puts"#{ARGV[0]}#{ARGV[1]}"
+          ruby input.rb hello everybody
+
+=== 输出
+
+     - 单行输出
+
+      print "This","is","a","test","!","\n"
+
+    - 换行输出
+
+      puts "This","is","a" ,"test","!"
+
+    - 格式化输出
+
+      printf("%d %.2f %s\n",1,99.3,"Justin")
+
+    - 字符串格式化输出
+
+      x = sprintf "%d %.2f %s",1,99.3,"Justin"
+      puts x
+      x = "%d %.2f %s"%[1,99.3,"Justin"]
+      puts x
